@@ -186,7 +186,7 @@ def list_instance_attachments(activity):
       name = attachment['filename']
       attachments += [{
           'url':
-          'https://codein.withgoogle.com' + url.encode('utf-8'),
+          'https://codein.withgoogle.com' + str(url.encode('utf-8')),
           'filename':
           name
       }]
@@ -225,7 +225,7 @@ def write_instance(datadir, instance, cookies):
       url = attachment['url']
       urlpath = up.urlparse(url).path
       base = os.path.basename(os.path.dirname(urlpath))
-      filename = base + '_' + attachment['filename'].encode('utf-8')
+      filename = str(base) + '_' + str(attachment['filename'].encode('utf-8'))
       print('\tgetting ' + filename)
       attachment_path = os.path.join(folder_path, filename)
       file_contents = requests.get(url, cookies=cookies, stream=True)
